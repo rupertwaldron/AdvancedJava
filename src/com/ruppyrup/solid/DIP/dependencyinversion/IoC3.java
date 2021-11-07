@@ -1,4 +1,4 @@
-package com.ruppyrup.solid.dependencyinversion;
+package com.ruppyrup.solid.DIP.dependencyinversion;
 
 public class IoC3 {
 

@@ -1,18 +1,23 @@
-package com.ruppyrup.solid.dependencyinversion;
+package com.ruppyrup.solid.DIP.dependencyinversion;
 
-public class IoC1 {
+public class IoC2 {
 
     public static void main(String[] args) {
-        IoC1 container = new IoC1();
-        User user = container.new User();
+        IoC2 container = new IoC2();
+        MySqlDatabase sqlDatabase = container.new MySqlDatabase();
+        User user = container.new User(sqlDatabase);
         user.add("hello world");
     }
 
     public class User {
         MySqlDatabase mySqlDatabase;
 
+        public User(MySqlDatabase mySqlDatabase) {
+            this.mySqlDatabase = mySqlDatabase;
+        }
+
         public void add(String data) {
-            mySqlDatabase = new MySqlDatabase();
+//            mySqlDatabase = new MySqlDatabase();
             mySqlDatabase.persist(data);
         }
 
