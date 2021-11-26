@@ -11,23 +11,43 @@ public class TestShapes {
         group.add(circle);
         group.add(square);
 
-        Display display = new Display();
-        display.loadShapes(circle1);
-        display.loadShapes(square1);
-        display.loadShapes(group);
+        Display display = new ScreenDisplay();
 
-        display.display();
+        circle1.draw(display);
+
+        System.out.println("*****************");
+
+        group.draw(display);
+
+        System.out.println("*****************");
+
+        Display starDisplay = new StarDisplay();
+
+        group.draw(starDisplay);
+
+
+
     }
 }
 
-class Display {
-    private ShapeGroup allShapes = new ShapeGroup();
+interface Display {
+    void display(Shape shape);
+}
 
-    public void loadShapes(Shape shape) {
-        allShapes.add(shape);
+class ScreenDisplay implements Display {
+
+    public void display(Shape shape) {
+        System.out.println("Drawing a " + shape.getColor() + " " + shape.getName() + ".");
     }
+}
 
-    public void display() {
-        allShapes.draw();
+class StarDisplay implements Display {
+
+    public void display(Shape shape) {
+        System.out.println("*************************************");
+        System.out.print("***");
+        System.out.print("Drawing a " + shape.getColor() + " " + shape.getName() + ".");
+        System.out.println("***");
+        System.out.println("*************************************");
     }
 }

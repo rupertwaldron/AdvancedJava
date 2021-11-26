@@ -13,7 +13,7 @@ class AfterTest {
 //        Input stubInput = () -> "test";
 
         Input stubInput = new StubInput("test");
-        Output mockOutput = new MockOutput();
+        MockOutput mockOutput = new MockOutput();
 
         Transformer transformer = new UpperCaseTransformer();
 
@@ -21,7 +21,7 @@ class AfterTest {
 
         after.transformInput(transformer);
 
-        Assertions.assertEquals("TEST", ((MockOutput)mockOutput).getActual());
+        Assertions.assertEquals("TEST", mockOutput.getActual());
     }
 }
 
