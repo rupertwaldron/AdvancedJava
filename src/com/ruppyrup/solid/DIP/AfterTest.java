@@ -23,30 +23,32 @@ class AfterTest {
 
         Assertions.assertEquals("TEST", mockOutput.getActual());
     }
+
+    class StubInput implements Input {
+        private String input;
+
+        public StubInput(String input) {
+            this.input = input;
+        }
+
+        @Override
+        public String fetch() {
+            return input;
+        }
+    }
+
+    class MockOutput implements Output {
+        private String output;
+
+        @Override
+        public void display(String output) {
+            this.output = output;
+        }
+
+        public String getActual() {
+            return output;
+        }
+    }
 }
 
-class StubInput implements Input {
-    private String input;
 
-    public StubInput(String input) {
-        this.input = input;
-    }
-
-    @Override
-    public String fetch() {
-        return input;
-    }
-}
-
-class MockOutput implements Output {
-    private String output;
-
-    @Override
-    public void display(String output) {
-        this.output = output;
-    }
-
-    public String getActual() {
-        return output;
-    }
-}
