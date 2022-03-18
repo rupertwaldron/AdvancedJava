@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.concurrent.CompletableFuture.runAsync;
 
@@ -36,9 +37,10 @@ public class TestPubSub {
                 .mapToObj(i -> runAsync(() -> missileDetect.publish("missile detected " + i, broker), executor))
                 .toList();
 
+        Stream.concat(jetFutures.stream(), missileFutures.stream()).forEach(CompletableFuture::join);
 
-        jetFutures.forEach(CompletableFuture::join);
-        missileFutures.forEach(CompletableFuture::join);
+//        jetFutures.forEach(CompletableFuture::join);
+//        missileFutures.forEach(CompletableFuture::join);
 
     }
 }

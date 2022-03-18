@@ -1,9 +1,9 @@
 package com.ruppyrup.pubsub;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 public final class Broker {
     private final Object mutex = new Object();
@@ -19,7 +19,7 @@ public final class Broker {
         return brokerInstance;
     }
 
-    private final Map<Class<?>, Set<Subscriber>> subscribers = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Set<Subscriber>> subscribers = new HashMap<>();
 
     public boolean deregister(Class<?> topic, Subscriber subscriber) {
         synchronized (mutex) {
@@ -42,8 +42,9 @@ public final class Broker {
 
     public void sendMessage(Message message) {
         synchronized (mutex) {
-            final Set<Subscriber> sub = this.subscribers.get(message.getTopic());
-            sub.parallelStream().forEach(subscriber -> subscriber.update(message.getPayload()));
+            subscribers.get(message.getTopic())
+                    .forEach(subscriber -> subscriber.update(message.getPayload()));
+//            sub.parallelStream().forEach(subscriber -> subscriber.update(message.getPayload()));
         }
     }
 

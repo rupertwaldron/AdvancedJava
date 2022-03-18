@@ -127,3 +127,15 @@ class Country1 {
         return countryCode;
     }
 }
+
+class ThrowsStuff {
+    private Short value;
+
+    public Short getValue()  {
+        return value;
+    }
+
+    public String getValueString(Short value) throws DataResolver.TestException {
+        return String.valueOf(value);
+    }
+}

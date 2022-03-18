@@ -8,9 +8,11 @@ import com.ruppyrup.hexagonalarch.core.Converter;
  */
 public class InputAdapter implements Adapter<Integer> {
   private final Converter converter;
+  private final Adapter<String> adapter;
 
-  public InputAdapter(Converter converter) {
+  public InputAdapter(Converter converter, Adapter<String> adapter) {
     this.converter = converter;
+    this.adapter = adapter;
   }
 
   /**
@@ -18,7 +20,8 @@ public class InputAdapter implements Adapter<Integer> {
    */
   @Override
   public void process(Integer inputNumber) {
-    converter.convert(inputNumber);
+    String convert = converter.convert(inputNumber);
+    adapter.process(convert);
   }
 
 }

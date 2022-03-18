@@ -3,7 +3,6 @@ package com.ruppyrup.annotations.jsonannotation;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface Jsonify {
     default String toJsonString() {
@@ -28,8 +27,7 @@ public interface Jsonify {
         }
 
         final List<String> interfaces = Arrays.stream(field.getType().getInterfaces())
-                .map(Class::getSimpleName)
-                .collect(Collectors.toList());
+                .map(Class::getSimpleName).toList();
 
         try {
             if (field.getType().equals(String.class)) {

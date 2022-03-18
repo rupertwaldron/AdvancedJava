@@ -1,8 +1,6 @@
 package com.ruppyrup.hexagonalarch.core;
 
 
-import com.ruppyrup.hexagonalarch.adapters.Adapter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,13 +14,10 @@ import java.util.TreeMap;
  */
 public class IntegerToRomanConverter implements Converter {
 
-  private final Adapter<String> outputAdapter;
-
   private SortedMap<Integer, String> romanNumerals;
   private List<Integer> sortedKeys;
 
-  public IntegerToRomanConverter(Adapter<String> outputAdapter) {
-    this.outputAdapter = outputAdapter;
+  public IntegerToRomanConverter() {
     romanNumerals = new TreeMap<>(Map.of(
         1, "I", 5, "V", 10, "X", 50, "L",
         100, "C", 500, "D", 1000, "M"
@@ -33,12 +28,12 @@ public class IntegerToRomanConverter implements Converter {
   }
 
   @Override
-  public void convert(int intToConvert) {
+  public String convert(int intToConvert) {
     throwIfNumberIsZeroOrNegative(intToConvert);
 
     String romanNumeralFound = romanNumerals.get(intToConvert);
     if (romanNumeralFound != null) {
-      outputAdapter.process(romanNumeralFound);
+      return romanNumeralFound;
     }
 
     StringBuilder result = new StringBuilder();
@@ -56,12 +51,12 @@ public class IntegerToRomanConverter implements Converter {
           newIntoConvert -= sortedKeys.get(i);
         }
       } else {
-      i++;
+        i++;
+      }
     }
+    return result.toString();
   }
 
-    outputAdapter.process(result.toString());
-}
 
   private boolean isNumberStartsWith4Or9(int newIntoConvert, String prefix) {
     return String.valueOf(newIntoConvert).startsWith(prefix);
