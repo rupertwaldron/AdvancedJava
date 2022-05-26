@@ -1,7 +1,5 @@
 package com.ruppyrup.singletons;
 
-import org.junit.jupiter.api.Assertions;
-
 public enum SingletonEnum {
     INSTANCE(5);
 
@@ -27,6 +25,6 @@ class EnumDemo {
         singleton.setValue(2);
         System.out.println(singleton.getValue());
         SingletonEnum singleton1 = SingletonEnum.INSTANCE;
-        Assertions.assertEquals(singleton, singleton1);
+//        Assertions.assertEquals(singleton, singleton1);
     }
 }

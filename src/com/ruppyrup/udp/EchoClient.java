@@ -12,17 +12,18 @@ public class EchoClient {
     private DatagramSocket socket;
     private InetAddress address;
 
-    private byte[] buf = new byte[10240];
+    private byte[] buf = new byte[1024];
 
     public EchoClient() throws SocketException, UnknownHostException {
-        socket = new DatagramSocket();
-        address = InetAddress.getByName("localhost");
+        socket = new DatagramSocket(3001);
+//        address = InetAddress.getByName("localhost");
+        address = InetAddress.getByAddress(new byte[] {(byte) 192, (byte) 168, 0, 18});
     }
 
     public void sendEcho(String msg) throws IOException {
         buf = msg.getBytes();
         DatagramPacket packet
-                = new DatagramPacket(buf, buf.length, address, 4445);
+                = new DatagramPacket(buf, buf.length, address, 3333);
         socket.send(packet);
 //        packet = new DatagramPacket(buf, buf.length);
 //        socket.receive(packet);
@@ -46,7 +47,7 @@ public class EchoClient {
     public static void main(String[] args) throws IOException, InterruptedException {
         EchoClient echoClient = new EchoClient();
         for (int i = 0; i < 100; i++) {
-            sleeper(100);
+            sleeper(1000);
             echoClient.sendEcho("Hello from client " + i);
             System.out.println("Sending :: " + "Hello from client " + i);
         }

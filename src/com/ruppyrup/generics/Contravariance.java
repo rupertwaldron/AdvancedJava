@@ -5,6 +5,17 @@ import java.util.function.Supplier;
 
 public class Contravariance {
 
+//    I have an X in my hand. If I want to write my X into a List, that List needs to be either a List of X
+//    or a List of things that my X can be upcast to as I write them in i.e. any superclass of X...
+//
+//    java.util.List<? super   X>
+
+
+//    If I get a List and I want to read an X out of that List, that better be a List of X
+//    or a List of things that can be upcast to X as I read them out, i.e. anything that extends X
+//
+//    List<? extends X>
+
     public void feedConsumers(
             Supplier<EnergySource> energy,
             Supplier<Vegatable> veg,

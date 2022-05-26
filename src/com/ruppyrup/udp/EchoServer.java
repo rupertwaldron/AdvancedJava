@@ -5,16 +5,19 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 public class EchoServer extends Thread {
 
+    private final InetAddress byAddress;
     private DatagramSocket socket;
     private boolean running;
-    private byte[] buf = new byte[10240];
+    private byte[] buf = new byte[1024];
 
-    public EchoServer() throws SocketException {
-        socket = new DatagramSocket(4445);
+    public EchoServer() throws SocketException, UnknownHostException {
+        byAddress = InetAddress.getByAddress(new byte[]{(byte) 192, (byte) 168, 0, 18});
+        socket = new DatagramSocket(3333, byAddress);
 
     }
 
@@ -35,7 +38,7 @@ public class EchoServer extends Thread {
             packet = new DatagramPacket(buf, buf.length, address, port);
             String received
                     = new String(packet.getData(), 0, packet.getLength());
-            System.out.println("Received :: " + received);
+            System.out.println("Received :: " + received + " from ip :: " + address + " and port :: " + port);
             sleeper(1);
 
 //            if (received.equals("end")) {
@@ -61,7 +64,7 @@ public class EchoServer extends Thread {
         }
     }
 
-    public static void main(String[] args) throws SocketException {
+    public static void main(String[] args) throws SocketException, UnknownHostException {
         new EchoServer().start();
     }
 }
