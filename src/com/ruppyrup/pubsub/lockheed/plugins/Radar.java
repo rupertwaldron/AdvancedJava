@@ -41,7 +41,7 @@ public class Radar extends Plugin {
   public void start() {
     System.out.println("Starting Radar");
     getNotifier().subscribe(ScreenBlob.class, blob -> {
-      System.out.println("Screen blob received :: " + blob);
+      System.out.println("Radar received Screen blob :: " + blob);
     });
   }
 }

@@ -13,7 +13,6 @@ import java.util.function.Supplier;
 
 public class StandardNotifier implements Notifier {
 
-  private final ConcurrentMap<Class<?>, Set<NotifierEvent>> notifierEvents = new ConcurrentHashMap<>();
   private final ConcurrentMap<Class<?>, Set<NotificationEvent<?>>> eventMap = new ConcurrentHashMap<>();
 
   private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
@@ -43,7 +42,6 @@ public class StandardNotifier implements Notifier {
   }
 
   private void subscribeTo(Class<?> identifier, NotificationEvent<?> notificationEvent) {
-    final Set<NotifierEvent> copyNotifierEvents = new HashSet<>();
 
     UtilLock.lock(writeLock, () -> {
       if (eventMap.containsKey(identifier))
@@ -54,12 +52,7 @@ public class StandardNotifier implements Notifier {
         eventMap.put(identifier, eventSet);
       }
 
-      if (notifierEvents.containsKey(identifier))
-        copyNotifierEvents.addAll(notifierEvents.get(identifier));
     });
 
-
-    for (final NotifierEvent copyNotifierEvent : copyNotifierEvents)
-      copyNotifierEvent.callBack(new NotifierEventArgs(identifier, notificationEvent));
   }
 }
