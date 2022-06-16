@@ -3,6 +3,7 @@ package com.ruppyrup.pubsub.lockheed.plugins;
 import com.ruppyrup.pubsub.lockheed.core.Plugin;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ public class Radar extends Plugin {
 
   final Random random = new Random();
   final Deque<Plane> planes = new LinkedList<>();
+  final List<ScreenBlob> blobs = new LinkedList<>();
 
   public Radar(UUID identifier) {
     super(identifier);
@@ -28,19 +30,17 @@ public class Radar extends Plugin {
     getNotifier().publish(Plane.class, () -> plane);
   }
 
-  public Plane getLastPlane() {
-    return planes.removeLast();
-  }
-
   @Override
   public void shutdown() {
-    System.out.println("Radar shutting down");
+    System.out.println("Radar shutting down with no planes = " + planes.size());
+    System.out.println("Radar shutting down with no blobs = " + blobs.size());
   }
 
   @Override
   public void start() {
     System.out.println("Starting Radar");
     getNotifier().subscribe(ScreenBlob.class, blob -> {
+      blobs.add(blob);
       System.out.println("Radar received Screen blob :: " + blob);
     });
   }

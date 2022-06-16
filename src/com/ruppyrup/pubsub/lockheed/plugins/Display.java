@@ -1,13 +1,13 @@
 package com.ruppyrup.pubsub.lockheed.plugins;
 
 import com.ruppyrup.pubsub.lockheed.core.Plugin;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 public class Display extends Plugin {
 
-  private List<ScreenBlob> blobs = new ArrayList<>();
+  private List<ScreenBlob> blobs = new LinkedList<>();
 
   public Display(UUID identifier) {
     super(identifier);
@@ -15,7 +15,7 @@ public class Display extends Plugin {
 
   @Override
   public void shutdown() {
-    System.out.println("Shutting down display");
+    System.out.println("Display shutting down with no blobs = " + blobs.size());
   }
 
   @Override
