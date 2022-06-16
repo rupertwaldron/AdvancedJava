@@ -1,17 +1,15 @@
 package com.ruppyrup.pubsub.lockheed.plugins;
 
 import com.ruppyrup.pubsub.lockheed.core.Plugin;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Radar extends Plugin {
 
   final Random random = new Random();
-  final Deque<Plane> planes = new LinkedList<>();
-  final List<ScreenBlob> blobs = new LinkedList<>();
+  private final ConcurrentLinkedDeque<Plane> planes = new ConcurrentLinkedDeque<>();
+  private final ConcurrentLinkedDeque<ScreenBlob> blobs = new ConcurrentLinkedDeque<>();
 
   public Radar(UUID identifier) {
     super(identifier);

@@ -8,6 +8,9 @@ import com.ruppyrup.pubsub.lockheed.plugins.Radar;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 
 public class App {
@@ -27,12 +30,32 @@ public class App {
     display.start();
     alert.start();
 
+    int threadCount = 1000;
+    ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+    final CountDownLatch readyThreadCounter = new CountDownLatch(threadCount);
+    final CountDownLatch callingThreadBlocker = new CountDownLatch(1);
+    final CountDownLatch completedThreadCounter = new CountDownLatch(threadCount);
+
     List<CompletableFuture<Void>> completableFutures = Stream.generate(
-            () -> CompletableFuture.runAsync(radar::addPlane))
-        .limit(10)
+            () -> CompletableFuture.runAsync(() -> {
+              readyThreadCounter.countDown();
+              try {
+                callingThreadBlocker.await();
+              } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+              }
+              radar.addPlane();
+            }, executorService))
+        .limit(threadCount)
         .toList();
 
+    callingThreadBlocker.countDown();
+
+    completedThreadCounter.countDown();
+
     completableFutures.forEach(CompletableFuture::join);
+
+    executorService.shutdown();
 
     radar.shutdown();
     display.shutdown();

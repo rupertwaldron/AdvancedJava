@@ -1,13 +1,12 @@
 package com.ruppyrup.pubsub.lockheed.plugins;
 
 import com.ruppyrup.pubsub.lockheed.core.Plugin;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Alert extends Plugin {
 
-  List<Plane> planes = new LinkedList<>();
+  final private ConcurrentLinkedDeque<Plane> planes = new ConcurrentLinkedDeque<>();
 
   public Alert(UUID identifier) {
     super(identifier);

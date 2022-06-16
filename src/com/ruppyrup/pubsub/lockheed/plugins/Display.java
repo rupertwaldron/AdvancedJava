@@ -1,13 +1,12 @@
 package com.ruppyrup.pubsub.lockheed.plugins;
 
 import com.ruppyrup.pubsub.lockheed.core.Plugin;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Display extends Plugin {
 
-  private List<ScreenBlob> blobs = new LinkedList<>();
+  private final ConcurrentLinkedDeque<ScreenBlob> blobs = new ConcurrentLinkedDeque<>();
 
   public Display(UUID identifier) {
     super(identifier);
