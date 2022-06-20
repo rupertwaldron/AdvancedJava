@@ -1,10 +1,10 @@
-package com.ruppyrup.pubsub.lockheed.app;
+package com.ruppyrup.pubsub.lambda.app;
 
-import com.ruppyrup.pubsub.lockheed.core.LambdaNotifier;
-import com.ruppyrup.pubsub.lockheed.core.Notifier;
-import com.ruppyrup.pubsub.lockheed.plugins.Alert;
-import com.ruppyrup.pubsub.lockheed.plugins.Display;
-import com.ruppyrup.pubsub.lockheed.plugins.Radar;
+import com.ruppyrup.pubsub.lambda.core.LambdaNotifier;
+import com.ruppyrup.pubsub.lambda.core.Notifier;
+import com.ruppyrup.pubsub.lambda.plugins.Alert;
+import com.ruppyrup.pubsub.lambda.plugins.Display;
+import com.ruppyrup.pubsub.lambda.plugins.Radar;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;

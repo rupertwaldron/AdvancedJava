@@ -1,6 +1,6 @@
-package com.ruppyrup.pubsub.lockheed.core;
+package com.ruppyrup.pubsub.lambda.core;
 
-import com.ruppyrup.pubsub.lockheed.utils.UtilLock;
+import com.ruppyrup.pubsub.lambda.utils.UtilLock;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

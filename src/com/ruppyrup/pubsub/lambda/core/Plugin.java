@@ -1,4 +1,4 @@
-package com.ruppyrup.pubsub.lockheed.core;
+package com.ruppyrup.pubsub.lambda.core;
 
 import java.util.UUID;
 

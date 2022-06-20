@@ -1,4 +1,4 @@
-package com.ruppyrup.pubsub.lockheed.core;
+package com.ruppyrup.pubsub.lambda.core;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;

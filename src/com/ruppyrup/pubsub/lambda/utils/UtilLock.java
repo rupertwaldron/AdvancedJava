@@ -1,4 +1,4 @@
-package com.ruppyrup.pubsub.lockheed.utils;
+package com.ruppyrup.pubsub.lambda.utils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.function.Supplier;

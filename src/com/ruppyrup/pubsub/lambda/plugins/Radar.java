@@ -1,6 +1,6 @@
-package com.ruppyrup.pubsub.lockheed.plugins;
+package com.ruppyrup.pubsub.lambda.plugins;
 
-import com.ruppyrup.pubsub.lockheed.core.Plugin;
+import com.ruppyrup.pubsub.lambda.core.Plugin;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedDeque;
