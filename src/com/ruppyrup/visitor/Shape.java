@@ -1,7 +1,6 @@
 package com.ruppyrup.visitor;
 
 
-public interface Shape {
+public interface Shape extends Visitable {
     void draw();
-    void accept(Visitor visitor);
 }

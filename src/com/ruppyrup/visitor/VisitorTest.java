@@ -5,8 +5,12 @@ public class VisitorTest {
         Shape circle = new Circle();
         Shape square = new Square();
         Visitor htmlVisitor = new HtmlVisitor();
+        Visitor asciiVisitor = new AsciiVisitor();
 
         circle.accept(htmlVisitor);
         square.accept(htmlVisitor);
+
+        circle.accept(asciiVisitor);
+        square.accept(asciiVisitor);
     }
 }

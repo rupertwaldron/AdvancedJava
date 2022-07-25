@@ -1,17 +1,21 @@
 package com.ruppyrup.visitor;
 
-public class HtmlVisitor implements Visitor {
+public class AsciiVisitor implements Visitor {
 
     public void visit(Circle o) {
         String circle = """
-              <p>I am a circle<p>\n
+            ****************
+            I am a circle\n
+            ***************
                 """ + o.toString();
         System.out.println(circle);
     }
 
     public void visit(Square o) {
         String square = """
-              <p>I am a square<p>\n
+              ***************
+              I am a square\n
+              ***************
                 """ + o.toString();
         System.out.println(square);
     }
