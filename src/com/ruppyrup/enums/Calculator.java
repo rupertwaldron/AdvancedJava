@@ -12,16 +12,8 @@ public class Calculator {
 
         Sum test = input.getInput();
 
-        calc(test);
-
+        System.out.println(test.calculate());
     }
-
-    static void calc(Sum sum) {
-        System.out.println(sum.calculation.calculate(sum.a, sum.b));
-    }
-
-
-
 }
 
 
@@ -31,18 +23,21 @@ enum Calculation {
     MULTI((a, b) -> a * b, "*"),
     DIV((a, b) -> a / b, "/");
 
-    IntBinaryOperator operator;
-    String symbol;
+    private IntBinaryOperator operator;
+    private String symbol;
 
     Calculation(IntBinaryOperator operator, String symbol) {
         this.operator = operator;
         this.symbol = symbol;
     }
 
-    int calculate(int a, int b) {
+    public int calculate(int a, int b) {
         return operator.applyAsInt(a, b);
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
 }
 
 class SumInput {
@@ -58,7 +53,7 @@ class SumInput {
 
     private Calculation getCalculation(String sym) {
         return Arrays.stream(Calculation.values())
-                .filter(calculation -> calculation.symbol.equals(sym))
+                .filter(calculation -> calculation.getSymbol().equals(sym))
                 .findFirst()
                 .orElseThrow();
     }
@@ -66,13 +61,17 @@ class SumInput {
 }
 
 class Sum {
-    int a;
-    int b;
-    Calculation calculation;
+    private int a;
+    private int b;
+    private Calculation calculation;
 
     public Sum(int a, int b, Calculation calculation) {
         this.a = a;
         this.b = b;
         this.calculation = calculation;
+    }
+
+    public double calculate() {
+        return calculation.calculate(a, b);
     }
 }

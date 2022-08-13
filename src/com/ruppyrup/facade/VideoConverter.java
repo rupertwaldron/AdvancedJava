@@ -1,6 +1,7 @@
 package com.ruppyrup.facade;
 
 import java.io.*;
+import java.util.Objects;
 
 class VideoFile {
     private String filename;
@@ -49,7 +50,7 @@ public class VideoConverter {
         VideoFile file = new VideoFile(filename);
         Codec sourceCodec = new CodecFactory().extract(file);
         Codec destinationCodec;
-        if (format == "mp4")
+        if (Objects.equals(format, "mp4"))
             destinationCodec = new MPEG4CompressionCodec();
         else
             destinationCodec = new OggCompressionCodec();
