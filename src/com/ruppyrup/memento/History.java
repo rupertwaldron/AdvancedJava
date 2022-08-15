@@ -4,13 +4,13 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class History {
-    private Deque<EditorState> states = new ArrayDeque<>();
+    private final Deque<EditorMemento> states = new ArrayDeque<>(4);
 
-    public void saveState(EditorState editorState) {
-        states.push(editorState);
+    public void saveState(EditorMemento editorMemento) {
+        states.push(editorMemento);
     }
 
-    public EditorState getPreviousState() {
+    public EditorMemento getPreviousState() {
         return states.pop();
     }
 }
