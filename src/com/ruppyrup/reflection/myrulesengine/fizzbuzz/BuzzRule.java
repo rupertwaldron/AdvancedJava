@@ -1,4 +1,4 @@
-package com.ruppyrup.reflection.myrulesengine.rules;
+package com.ruppyrup.reflection.myrulesengine.fizzbuzz;
 
 import com.ruppyrup.reflection.myrulesengine.engine.AbstractRule;
 import java.util.function.Function;
