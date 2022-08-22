@@ -2,19 +2,19 @@ package com.ruppyrup.reflection.myrulesengine.engine;
 
 import static java.lang.Integer.MAX_VALUE;
 
-public abstract class AbstractRule<T> implements Rule<T> {
+public abstract class AbstractRule<T, R> implements Rule<T, R> {
 
   private static final int DEFAULT_PRIORITY = MAX_VALUE;
 
   protected int priority = DEFAULT_PRIORITY;
   protected final String name;
 
-  protected AbstractRule(int priority, String name) {
+  public AbstractRule(int priority, String name) {
     this.priority = priority;
     this.name = name;
   }
 
-  protected AbstractRule(String name) {
+  public AbstractRule(String name) {
     this.name = name;
   }
 

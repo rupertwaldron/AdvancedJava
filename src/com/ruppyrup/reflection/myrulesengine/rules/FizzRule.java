@@ -1,8 +1,9 @@
 package com.ruppyrup.reflection.myrulesengine.rules;
 
 import com.ruppyrup.reflection.myrulesengine.engine.AbstractRule;
+import java.util.function.Function;
 
-public class FizzRule extends AbstractRule<Integer> {
+public class FizzRule extends AbstractRule<Integer, String> {
 
   protected FizzRule(int priority, String name) {
     super(priority, name);
@@ -18,7 +19,7 @@ public class FizzRule extends AbstractRule<Integer> {
   }
 
   @Override
-  public String action() {
-    return "Fizz";
+  public Function<Integer, String> action() {
+    return a -> "Fizz";
   }
 }

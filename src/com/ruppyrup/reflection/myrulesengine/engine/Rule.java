@@ -1,8 +1,10 @@
 package com.ruppyrup.reflection.myrulesengine.engine;
 
-public interface Rule<T> {
+import java.util.function.Function;
+
+public interface Rule<T, R> {
   boolean shouldRun(T input);
-  String action();
+  Function<T, R> action();
 
   int getPriority();
 
