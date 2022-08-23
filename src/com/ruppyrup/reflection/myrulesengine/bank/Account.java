@@ -1,46 +1,20 @@
 package com.ruppyrup.reflection.myrulesengine.bank;
 
-import java.util.logging.Logger;
+public interface Account {
 
-public class Account {
+  void processTransaction(Transaction transaction);
 
-  private static final Logger LOGGER = Logger.getLogger(Account.class.getName());
-  private final String name;
-  private double balance;
-  private boolean suspended = false;
-  private final double overdraftLimit = -100.0;
+  double getBalance();
 
-  public Account(String name) {
-    this.name = name;
-  }
+  void suspendAccount();
 
-  public void addMoney(double amount) {
-    if (suspended) LOGGER.info("Your account is suspended" );
+  void unsuspendAccount();
 
-    balance += amount;
-  }
+  boolean isSuspended();
 
-  public void withDrawMoney(double amount) {
-    if (suspended) LOGGER.info("Your account is suspended" );
+  double getOverdraftLimit();
 
-    var predictedBalance = balance - amount;
+  void setOverdraftLimit(double overdraftLimit);
 
-    if (predictedBalance < overdraftLimit) {
-      LOGGER.info("Withdrawing this amount takes you over your overdraft limit");
-    } else {
-      balance -= amount;
-    }
-  }
-
-  public String getBalance() {
-    return "Balance for account: " + name + " = " + balance;
-  }
-
-  public void suspendAccount() {
-    suspended = true;
-  }
-
-  public void unsuspendAccount() {
-    suspended = false;
-  }
+  void printBalance();
 }

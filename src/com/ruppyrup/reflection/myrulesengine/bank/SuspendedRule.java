@@ -2,7 +2,7 @@ package com.ruppyrup.reflection.myrulesengine.bank;
 
 import com.ruppyrup.reflection.myrulesengine.bankengine.AbstractBankRule;
 
-public class SuspendedRule extends AbstractBankRule<Transaction, RuleAccount> {
+public class SuspendedRule extends AbstractBankRule<Transaction, Account> {
 
   protected SuspendedRule(int priority, String name) {
     super(priority, name);
@@ -13,12 +13,12 @@ public class SuspendedRule extends AbstractBankRule<Transaction, RuleAccount> {
   }
 
   @Override
-  public boolean shouldRun(Transaction transaction, RuleAccount account) {
+  public boolean shouldRun(Transaction transaction, Account account) {
     return account.isSuspended();
   }
 
   @Override
-  public void action(Transaction transaction, RuleAccount account) {
+  public void action(Transaction transaction, Account account) {
     LOGGER.info("Your account is suspended" );
   }
 }

@@ -3,7 +3,6 @@ package com.ruppyrup.reflection.myrulesengine.bankengine;
 import static java.lang.Integer.MAX_VALUE;
 
 import com.ruppyrup.reflection.myrulesengine.bank.Account;
-import com.ruppyrup.reflection.myrulesengine.bank.RuleAccount;
 import com.ruppyrup.reflection.myrulesengine.bank.Transaction;
 import java.util.logging.Logger;
 
@@ -42,5 +41,5 @@ public abstract class AbstractBankRule<U, V> implements BankRule<U, V> {
 
   public abstract boolean shouldRun(U input, V object);
 
-  public abstract void action(Transaction transaction, RuleAccount account);
+  public abstract void action(Transaction transaction, Account account);
 }
