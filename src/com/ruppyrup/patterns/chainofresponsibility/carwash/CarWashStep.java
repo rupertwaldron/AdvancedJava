@@ -1,4 +1,4 @@
-package com.ruppyrup.patterns.chainofresponsibility;
+package com.ruppyrup.patterns.chainofresponsibility.carwash;
 
 public abstract class CarWashStep {
     protected CarWashStep nextStep;

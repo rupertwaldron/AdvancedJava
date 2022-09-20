@@ -1,4 +1,4 @@
-package com.ruppyrup.patterns.chainofresponsibility;
+package com.ruppyrup.patterns.chainofresponsibility.carwash;
 
 
 import java.util.Objects;

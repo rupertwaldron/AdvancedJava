@@ -1,4 +1,4 @@
-package com.ruppyrup.patterns.chainofresponsibility;
+package com.ruppyrup.patterns.chainofresponsibility.carwash;
 
 public class OldStyleCarWashClient {
     public static void main(String[] args) {
