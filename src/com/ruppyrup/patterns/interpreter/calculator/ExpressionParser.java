@@ -19,11 +19,8 @@ public class ExpressionParser {
         System.out.printf("Popped operands %d and %d%n",
             firstExpression.interpret(), secondExpression.interpret());
         Expression operator = ParserUtil.getExpressionObject(firstExpression, secondExpression, symbol);
-        System.out.println(String.format("Applying Operator: %s", operator));
-        int result = operator.interpret();
-        NumberExpression resultExpression = new NumberExpression(result);
-        stack.push(resultExpression);
-        System.out.printf("Pushed result to stack: %d%n", resultExpression.interpret());
+        System.out.printf("Applying Operator: %s%n", operator);
+        stack.push(operator);
       }
     }
     return stack.pop().interpret();
@@ -34,8 +31,8 @@ class ExpressionParserTest {
   @Test
   public void testParse() throws Exception {
     String input="2 1 5 + *";
-    ExpressionParser expressionParser=new ExpressionParser();
-    int result=expressionParser.parse(input);
-    System.out.println("Final result: "+result);
+    ExpressionParser expressionParser = new ExpressionParser();
+    int result = expressionParser.parse(input);
+    System.out.println("Final result: " + result);
   }
 }
