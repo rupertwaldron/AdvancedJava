@@ -27,6 +27,7 @@ public class EnumTest {
         System.out.println(read);
         Map map = new ObjectMapper().readValue(json, Map.class);
         System.out.println(map);
+        MetaData.valueOf("bob");
         System.out.println(MetaData.NAME.getValue(json));
         System.out.println(MetaData.STREET.getValue(json));
     }

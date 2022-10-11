@@ -3,7 +3,6 @@ package com.ruppyrup.patterns.interpreter.calculator;
 public class SubtractionExpression implements Expression {
   private Expression firstExpression;
   private Expression secondExpression;
-
   public SubtractionExpression(Expression firstExpression, Expression secondExpression) {
     this.firstExpression = firstExpression;
     this.secondExpression = secondExpression;

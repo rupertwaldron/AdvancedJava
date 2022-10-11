@@ -1,7 +1,6 @@
 package com.ruppyrup.patterns.interpreter.calculator;
 
 public class ParserUtil {
-
   public static boolean isOperator(String symbol) {
     return (symbol.equals("+") || symbol.equals("-") || symbol.equals("*"));
   }
