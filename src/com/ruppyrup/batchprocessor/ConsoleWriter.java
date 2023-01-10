@@ -1,9 +1,9 @@
 package com.ruppyrup.batchprocessor;
 
-public class ConsoleWriter extends WriterStep<String>{
+public class ConsoleWriter extends WriterStep<Integer>{
 
   @Override
-  void write(String output) {
+  void write(Integer output) {
     System.out.println("Result = " + output);
   }
 }

@@ -1,8 +1,6 @@
-package com.ruppyrup.solid.DIP;
+package com.ruppyrup.solid.DIP.ditesting;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Can't test manually!! Can't manually input to keyboard or read output

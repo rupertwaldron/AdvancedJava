@@ -6,11 +6,11 @@ package com.ruppyrup.solid.SRP;
 */
 
 public class Firework {
-    private String name;
-    private int power;
+    private final String name;
+    private final int power;
     private boolean live = true;
 
-    public Firework(String name, int power) {
+    public Firework(final String name, final int power) {
         this.name = name;
         this.power = power;
     }
@@ -27,7 +27,7 @@ public class Firework {
     public static void main(String[] args) {
         Firework firework = new Firework("rocket", 3);
         firework.goOff();
-//        firework.goOff();
+        firework.goOff();
 
     }
 }

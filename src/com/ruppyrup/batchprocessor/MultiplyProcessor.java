@@ -3,8 +3,13 @@ package com.ruppyrup.batchprocessor;
 public class MultiplyProcessor extends ProcessorStep<Integer> {
 
   @Override
-  Integer applyTo(Integer input) {
+  public void applyTo(Integer input) {
     int interim = input * 12;
-    return nextStep != null ? nextStep.applyTo(interim): interim;
+    if (finalStep != null) {
+      finalStep.write(interim);
+    }
+    if (nextStep != null) {
+      nextStep.applyTo(interim);
+    }
   }
 }

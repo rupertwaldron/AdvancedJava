@@ -1,4 +1,4 @@
-package com.ruppyrup.solid.DIP;
+package com.ruppyrup.solid.DIP.ditesting;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

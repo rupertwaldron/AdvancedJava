@@ -9,6 +9,6 @@ public abstract class ReaderStep<T> {
     return nextStep;
   }
 
-  abstract T read();
+  abstract void read();
 
 }
