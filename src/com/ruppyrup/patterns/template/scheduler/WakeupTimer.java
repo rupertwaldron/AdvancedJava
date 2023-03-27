@@ -19,7 +19,7 @@ public class WakeupTimer extends AppScheduler {
   }
 
   public static void main(String[] args) throws InterruptedException {
-    WakeupTimer wakeupTimer = new WakeupTimer(LocalTime.of(10, 12), 20, 5);
+    WakeupTimer wakeupTimer = new WakeupTimer(LocalTime.of(8, 17), 20, 5);
     wakeupTimer.start();
   }
 }

@@ -5,16 +5,8 @@ public class Monkey {
     private int age;
     private Food food;
 
+    // private constructor
     private Monkey() {}
-
-    public static void main(String[] args) {
-        Monkey monkey = Monkey.builder()
-                .age(2)
-                .name("Coco")
-                .food(Food.APPLE)
-                .build();
-        System.out.println("Monkey -> " + monkey);
-    }
 
     public static MonkeyBuilder builder() {
         return new MonkeyBuilder();
@@ -61,5 +53,14 @@ public class Monkey {
     public enum Food {
         BANANNA,
         APPLE
+    }
+
+    public static void main(String[] args) {
+        Monkey monkey = Monkey.builder()
+                .age(2)
+                .name("Coco")
+                .food(Food.APPLE)
+                .build();
+        System.out.println("Monkey -> " + monkey);
     }
 }

@@ -5,5 +5,8 @@ public class ProxyTest {
         ExpensiveObject object = new ExpensiveObjectProxy();
         object.process();
         object.process();
+        ExpensiveObject object2 = new ExpensiveObjectProxy();
+        object2.process();
+        object2.process();
     }
 }

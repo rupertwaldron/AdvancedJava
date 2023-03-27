@@ -9,11 +9,11 @@ public class ExpensiveObjectImpl implements ExpensiveObject {
 
     @Override
     public void process() {
-        System.out.println("processing complete.");
+        System.out.println(this + " is processing complete.");
     }
 
     private void heavyInitialConfiguration() {
-        System.out.println("Loading initial configuration...");
+        System.out.println("Loading initial configuration for ... " + this);
     }
 
 }
