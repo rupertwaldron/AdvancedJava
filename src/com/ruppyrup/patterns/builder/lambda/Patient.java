@@ -1,4 +1,4 @@
-package com.ruppyrup.patterns.builder;
+package com.ruppyrup.patterns.builder.lambda;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -7,7 +7,7 @@ public class Patient {
     private final String firstName;
     private final String surname;
     private final Integer age;
-    private final String address;
+    private final AddressForMe address;
     private final String phoneNumber;
     private final Sex sex;
 
@@ -40,7 +40,7 @@ public class Patient {
         private final String firstName;
         private final String surname;
         public Integer age;
-        public String address;
+        public AddressForMe address;
         public String phoneNumber;
         public Sex sex;
 
@@ -72,7 +72,7 @@ public class Patient {
         return Optional.ofNullable(age);
     }
 
-    public Optional<String> getAddress() {
+    public Optional<AddressForMe> getAddress() {
         return Optional.ofNullable(address);
     }
 

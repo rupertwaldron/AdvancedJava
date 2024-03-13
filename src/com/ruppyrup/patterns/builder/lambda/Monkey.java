@@ -1,4 +1,4 @@
-package com.ruppyrup.patterns.builder;
+package com.ruppyrup.patterns.builder.lambda;
 
 public class Monkey {
     private String name;
