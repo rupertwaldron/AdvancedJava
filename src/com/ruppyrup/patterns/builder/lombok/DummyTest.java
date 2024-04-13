@@ -1,10 +1,9 @@
 package com.ruppyrup.patterns.builder.lombok;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DummyTest {
     @Test
@@ -15,7 +14,7 @@ class DummyTest {
                 .withAddress(Address.builder()
                         .withHouseNumber(13)
                         .withRoadName("Beauchamp Road")
-                                .withCounty(County.builder().withCountyName("Hampshire").build())
+                        .withCounty(County.builder().withCountyName("Hampshire").build())
                         .build())
                 .build();
 
@@ -30,10 +29,51 @@ class DummyTest {
                 .withName("Bob")
                 .address(add -> add.withHouseNumber(55).withRoadName("Norries"))
                 .address(add -> add.withRoadName("Beauchamp"))
+                .address(add -> add.county(cnty -> {
+                    cnty.withCountyName("Berkshire");
+                    cnty.withPostCode(567);
+                }))
                 .build();
 
-        assertEquals("Beauchamp", dummy.address().roadName);
+        assertEquals("Beauchamp", dummy.address().roadName());
+        assertEquals("Berkshire", dummy.address().county().getCountyName());
+    }
 
+    @Test
+    void checkCanBuildWithDefaultFields() throws JsonProcessingException {
+        Dummy dummy = Dummy.builder().build();
+
+        assertEquals("Rupert", dummy.name());
+        assertEquals("Rances Lane", dummy.address().roadName());
+        assertEquals("Berkshire", dummy.address().county().getCountyName());
+    }
+
+    @Test
+    void useToBuilder() throws JsonProcessingException {
+        Dummy dummy = Dummy.builder().build();
+
+        Dummy.Builder defaultSetting = dummy.toBuilder();
+
+        Dummy newDummy = defaultSetting.address(add -> add.county(cnty -> cnty.withPostCode(666))).build();
+
+        assertEquals("Rupert", newDummy.name());
+        assertEquals("Rances Lane", newDummy.address().roadName());
+        assertEquals("Berkshire", newDummy.address().county().getCountyName());
+        assertEquals(666, newDummy.address().county().getPostCode());
+    }
+
+    @Test
+    void useToBuilderWithNormalMethods() throws JsonProcessingException {
+        Dummy dummy = Dummy.builder().build();
+
+        Dummy.Builder defaultSetting = dummy.toBuilder();
+
+        Dummy newDummy = defaultSetting.withAddress(dummy.address().toBuilder().withCounty(dummy.address().county().toBuilder().withPostCode(666).build()).build()).build();
+
+        assertEquals("Rupert", newDummy.name());
+        assertEquals("Rances Lane", newDummy.address().roadName());
+        assertEquals("Berkshire", newDummy.address().county().getCountyName());
+        assertEquals(666, newDummy.address().county().getPostCode());
     }
 
     @Test

@@ -10,12 +10,12 @@ import java.util.Random;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Builder(setterPrefix = "with")
+@Builder(setterPrefix = "with", builderClassName = "Builder", toBuilder = true)
 //@Jacksonized
 @Value
 public class County {
-    @Builder.Default
+    @lombok.Builder.Default
     String countyName = "Berkshire";
-    @Builder.Default
+    @lombok.Builder.Default
     Integer postCode = 100;
 }

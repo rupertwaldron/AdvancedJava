@@ -3,19 +3,15 @@ package com.ruppyrup.patterns.builder.lombok;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.Value;
 import lombok.experimental.Accessors;
-import lombok.extern.jackson.Jacksonized;
 
 import java.util.function.Consumer;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Builder(setterPrefix = "with", builderClassName = "Builder", buildMethodName = "build0")
+@Builder(setterPrefix = "with", builderClassName = "Builder", buildMethodName = "build0", toBuilder = true)
 @Value
 //@Jacksonized
 @Accessors(fluent = true)
@@ -31,16 +27,15 @@ public class Dummy {
     }
 
     public static class Builder {
-        Address.AddressBuilder addressBuilder = Address.builder();
+        Address.Builder addressBuilder = Address.builder();
 
         public Dummy build() {
             return this
                     .withAddress(addressBuilder.build())
                     .build0();
-
         }
 
-        public Builder address(Consumer<Address.AddressBuilder> addressAction) {
+        public Builder address(Consumer<Address.Builder> addressAction) {
             addressAction.accept(addressBuilder);
             return this;
         }

@@ -8,17 +8,34 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 import lombok.extern.jackson.Jacksonized;
 
+import java.util.function.Consumer;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Builder(setterPrefix = "with", toBuilder = true)
-@EqualsAndHashCode
-@Accessors(fluent = true)
+@Builder(setterPrefix = "with", builderClassName = "Builder", buildMethodName = "build0", toBuilder = true)
+@Value
 //@Jacksonized
+@Accessors(fluent = true)
 public class Address {
-    @Builder.Default
+    @lombok.Builder.Default
     int houseNumber = 63;
-    @Builder.Default
+    @lombok.Builder.Default
     String roadName = "Rances Lane";
-    @Builder.Default
-    County county = County.builder().build();
+    County county;
+
+    public static class Builder {
+        County.Builder countyBuilder = County.builder();
+
+        public Address build() {
+            return this
+                    .withCounty(countyBuilder.build())
+                    .build0();
+
+        }
+
+        public Address.Builder county(Consumer<County.Builder> countyAction) {
+            countyAction.accept(countyBuilder);
+            return this;
+        }
+    }
 }
