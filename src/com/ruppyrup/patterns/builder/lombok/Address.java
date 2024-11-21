@@ -3,11 +3,12 @@ package com.ruppyrup.patterns.builder.lombok;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
+import lombok.Singular;
 import lombok.Value;
 import lombok.experimental.Accessors;
-import lombok.extern.jackson.Jacksonized;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -21,6 +22,9 @@ public class Address {
     int houseNumber = 63;
     @lombok.Builder.Default
     String roadName = "Rances Lane";
+    @lombok.Builder.Default
+    List<Number> meterReadings = Arrays.asList(16.9, 120.9, 200.64);
+    @lombok.Builder.Default
     County county;
 
     public static class Builder {
@@ -33,7 +37,7 @@ public class Address {
 
         }
 
-        public Address.Builder county(Consumer<County.Builder> countyAction) {
+        public Builder county(Consumer<County.Builder> countyAction) {
             countyAction.accept(countyBuilder);
             return this;
         }

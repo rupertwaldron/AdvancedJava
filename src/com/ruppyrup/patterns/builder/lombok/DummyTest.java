@@ -1,7 +1,11 @@
 package com.ruppyrup.patterns.builder.lombok;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -43,6 +47,12 @@ class DummyTest {
     void checkCanBuildWithDefaultFields() throws JsonProcessingException {
         Dummy dummy = Dummy.builder().build();
 
+//        dummy.neighbours().add(new Neighbour("Waldron", 63));
+        dummy = dummy.toBuilder()
+//                .withNeighbours(List.of(new Neighbour("Redwood", 55)))
+                .neighbour(new Neighbour("Rachy", 99))
+                .build();
+
         assertEquals("Rupert", dummy.name());
         assertEquals("Rances Lane", dummy.address().roadName());
         assertEquals("Berkshire", dummy.address().county().getCountyName());
@@ -54,12 +64,21 @@ class DummyTest {
 
         Dummy.Builder defaultSetting = dummy.toBuilder();
 
-        Dummy newDummy = defaultSetting.address(add -> add.county(cnty -> cnty.withPostCode(666))).build();
+        List<Number> newMeterReadings = new ArrayList<>(dummy.address().meterReadings());
+
+        newMeterReadings.add(77);
+
+        Dummy newDummy = defaultSetting.address(addr -> {
+            addr.county(cnty -> cnty.withPostCode(666));
+            addr.withMeterReadings(newMeterReadings);
+        }).build();
+
 
         assertEquals("Rupert", newDummy.name());
         assertEquals("Rances Lane", newDummy.address().roadName());
         assertEquals("Berkshire", newDummy.address().county().getCountyName());
         assertEquals(666, newDummy.address().county().getPostCode());
+        Assertions.assertThat(newDummy.address().meterReadings()).contains(77, 16.9, 120.9, 200.64);
     }
 
     @Test
