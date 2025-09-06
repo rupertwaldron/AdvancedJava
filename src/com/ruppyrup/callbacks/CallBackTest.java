@@ -30,8 +30,6 @@ public class CallBackTest {
   public void doSomething(CallBack callback, BiConsumer<CallBack, String> consumer, String name) {
     consumer.accept(callback, name);
   }
-
-
 }
 
 interface CallBack {
